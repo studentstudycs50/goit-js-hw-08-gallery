@@ -4,18 +4,12 @@ const listGalleryRef = document.querySelector('.js-gallery')
 const modalRef = document.querySelector('.js-lightbox')
 const imageModalRef = document.querySelector('.lightbox__image')
 const closeModalButton = document.querySelector('button[data-action="close-lightbox"]')
-const overlayRef = document.querySelector('.lightbox__overlay')
 
-let indexCurrentImage ;
+
+let indexCurrentImage = 0;
 
 listGalleryRef.addEventListener('click', onOpenModal)
-// {
-//     preview:
-//       'https://cdn.pixabay.com/photo/2019/05/14/16/43/himilayan-blue-poppy-4202825__340.jpg',
-//     original:
-//       'https://cdn.pixabay.com/photo/2019/05/14/16/43/himilayan-blue-poppy-4202825_1280.jpg',
-//     description: 'Hokkaido Flower',
-//   }
+
 
 function createGallery() {
     let markup = ''
@@ -34,10 +28,14 @@ function createGallery() {
           />
         </a>
       </li>`
+
+     
     }
+
     listGalleryRef.innerHTML = markup
 }
 createGallery() 
+
 
 
 function onOpenModal(event) {
@@ -48,16 +46,15 @@ function onOpenModal(event) {
     indexCurrentImage = Number(event.target.dataset.index)
     modalRef.classList.add('is-open')
     imageModalRef.src = event.target.dataset.source
-    imageModalRef.alt = event.target.alt
     closeModalButton.addEventListener('click', onCloseModal)
-    overlayRef.addEventListener('click', onCloseModal)
     window.addEventListener('keydown', onPressKey)
+    
 }
+
 
 function onCloseModal() {
     modalRef.classList.remove('is-open')
     imageModalRef.src = ""
-
 }
 
 function onPressKey(event) {
@@ -72,10 +69,15 @@ function onPressKey(event) {
         case 'ArrowLeft':
             indexCurrentImage === 0 ? (indexCurrentImage = galleryItems.length - 1) : indexCurrentImage -=1;
             imageModalRef.src = galleryItems[indexCurrentImage].original
-                 break;
+                break;
         default:
             break;
     }
 }
+
+
+
+
+
 
 
