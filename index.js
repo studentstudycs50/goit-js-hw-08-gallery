@@ -53,9 +53,11 @@ function onOpenModal(event) {
 
 
 function onCloseModal() {
-    modalRef.classList.remove('is-open')
-    imageModalRef.src = ""
-    window.removeEventListener("keydown", onPressKey);
+  modalRef.classList.remove('is-open')
+  imageModalRef.src = ""
+  window.removeEventListener("keydown", onPressKey);
+  closeModalButton.removeEventListener('click', onCloseModal)
+  
 }
 
 function onPressKey(event) {
